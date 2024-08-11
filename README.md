@@ -14,7 +14,7 @@ Este proyecto muestra cómo crear y desplegar un API CRUD utilizando AWS Lambda,
        
    - Configura las variables de conexión en el código Lambda (host, user, password, database)
      
-      ![image](https://github.com/user-attachments/assets/99ba4079-e167-450d-b124-4dcc2823f880)
+      ![image](https://github.com/user-attachments/assets/80bc9b95-94ed-4229-ac14-ddc7df58098b)
 
 ### 2. Función Lambda: Despliega la función Lambda
 
@@ -23,11 +23,11 @@ Este proyecto muestra cómo crear y desplegar un API CRUD utilizando AWS Lambda,
   import mysql from 'mysql';
 
 const con = mysql.createConnection({
-  host: 'mydb.cfm88swqg5qd.us-east-2.rds.amazonaws.com',
-  user: 'admin',
-  port: "3306",
-  password: 'admin123',
-  database: 'bd_prueba',
+    host: 'mydb.cfm88swqg5qd.us-east-2.rds.amazonaws.com',
+    user: 'user_name',
+    port: "3306",
+    password: 'password',
+    database: 'database_name',
 });
 
 export const handler = async (event, context) => {
