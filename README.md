@@ -104,7 +104,7 @@ export const handler = async (event, context) => {
     ![Captura de pantalla 2024-08-11 163750](https://github.com/user-attachments/assets/ae5f3258-ea6d-49d5-bbf3-e078da6236f6)
 
 
-  - Habilita CORS en cada método.
+  - Habilita CORS
     
     ![Captura de pantalla 2024-08-11 163414](https://github.com/user-attachments/assets/ebc54174-3e35-4ab8-9f10-3be108802104)
 
