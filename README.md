@@ -23,11 +23,11 @@ Este proyecto muestra cómo crear y desplegar un API CRUD utilizando AWS Lambda,
   import mysql from 'mysql';
 
 const con = mysql.createConnection({
-    host: 'mydb.cfm88swqg5qd.us-east-2.rds.amazonaws.com',
-    user: 'user_name',
-    port: "3306",
-    password: 'password',
-    database: 'database_name',
+  host: 'mydb.cfm88swqg5qd.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  port: "3306",
+  password: 'admin123',
+  database: 'bd_prueba',
 });
 
 export const handler = async (event, context) => {
@@ -43,31 +43,38 @@ export const handler = async (event, context) => {
   });
 
   try {
+    // Detectar el método HTTP
     switch (event.httpMethod) {
-      case 'POST':
+      case 'POST': {
         const { estado } = JSON.parse(event.body);
-        const sqlPost = "INSERT INTO tb_estado (estado) VALUES (?)";
-        await query(sqlPost, [estado]);
+        const sql = "INSERT INTO tb_estado (estado) VALUES (?)";
+        await query(sql, [estado]);
         return {
           statusCode: 200,
           body: JSON.stringify({ message: 'Se registró el valor.' }),
         };
-      case 'GET':
-        const sqlGet = "SELECT * FROM tb_estado";
-        const results = await query(sqlGet);
+      }
+
+      case 'GET': {
+        const sql = "SELECT * FROM tb_estado";
+        const results = await query(sql);
         return {
           statusCode: 200,
           body: JSON.stringify(results),
         };
-      case 'PUT':
+      }
+
+      case 'PUT': {
         const { id_estado, estado } = JSON.parse(event.body);
-        const sqlPut = "UPDATE tb_estado SET estado = ? WHERE id_estado = ?";
-        await query(sqlPut, [estado, id_estado]);
+        const sql = "UPDATE tb_estado SET estado = ? WHERE id_estado = ?";
+        await query(sql, [estado, id_estado]);
         return {
           statusCode: 200,
           body: JSON.stringify({ message: 'Se actualizó el valor.' }),
         };
-      case 'DELETE':
+      }
+
+      case 'DELETE': {
         const id_estado = event.queryStringParameters?.id_estado;
         if (!id_estado) {
           return {
@@ -75,17 +82,20 @@ export const handler = async (event, context) => {
             body: JSON.stringify({ message: "El ID del estado es requerido." }),
           };
         }
-        const sqlDelete = "DELETE FROM tb_estado WHERE id_estado = ?";
-        await query(sqlDelete, [id_estado]);
+        const sql = "DELETE FROM tb_estado WHERE id_estado = ?";
+        await query(sql, [id_estado]);
         return {
           statusCode: 200,
           body: JSON.stringify({ message: 'Se eliminó el valor.' }),
         };
-      default:
+      }
+
+      default: {
         return {
           statusCode: 405,
           body: JSON.stringify({ message: 'Método no permitido.' }),
         };
+      }
     }
   } catch (err) {
     return {
@@ -94,7 +104,6 @@ export const handler = async (event, context) => {
     };
   }
 };
-
   ```
 
 ### 3. Crea una API en API Gateway con los métodos GET, POST, PUT, y DELETE.
