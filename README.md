@@ -23,11 +23,11 @@ Este proyecto muestra cómo crear y desplegar un API CRUD utilizando AWS Lambda,
   import mysql from 'mysql';
 
 const con = mysql.createConnection({
-  host: 'mydb.cfm88swqg5qd.us-east-2.rds.amazonaws.com',
-  user: 'admin',
+  host: 'mydb.cfm83ft45qd.us-east-2.rds.amazonaws.com',
+  user: 'user_name',
   port: "3306",
-  password: 'admin123',
-  database: 'bd_prueba',
+  password: 'password',
+  database: 'database_name',
 });
 
 export const handler = async (event, context) => {
