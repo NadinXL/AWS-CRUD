@@ -39,7 +39,7 @@ Resources:
                 - logs:PutLogEvents
               Resource:
                 - >-
-                  arn:aws:logs:us-east-2:025066261546:log-group:/aws/lambda/lambda_prueba:*
+                  arn:aws:logs:us-east-2:025066261546:log-group::*
       SnapStart:
         ApplyOn: None
       Events:
